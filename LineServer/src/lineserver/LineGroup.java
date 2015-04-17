@@ -5,6 +5,8 @@
  */
 package lineserver;
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 /**
@@ -12,14 +14,15 @@ import java.util.ArrayList;
  * @author myscloud
  */
 public class LineGroup {
-    public int groupId;
     public String groupName;
+    public int groupId;
     public ArrayList<User> users;
     public ArrayList<User> lastMessage;
     public ArrayList<Message> messages;
 
-    public LineGroup(int groupId, String groupName){
-        this.groupId=groupId;
+    public LineGroup(String groupName){
+        LocalDateTime timeNow= LocalDateTime.now();
+        this.groupId= timeNow.getNano()*timeNow.getHour();
         this.groupName=groupName;
     }
     public void addUser(User usr){

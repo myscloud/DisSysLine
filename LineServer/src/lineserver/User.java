@@ -51,14 +51,27 @@ public class User {
             System.out.println("YOU HAVE NO RIGHT");
         }
     }
-    public void createGroup(String groupName, int groupId){
-        LineGroup tmpGroup;
-        tmpGroup.groupId=groupId;
-        tmpGroup.groupName=groupName;
-        mainServer.groups.add(tmpGroup;
+    public void createGroup(String groupName){
+        LineGroup tmpGroup = new LineGroup(groupName);
+        mainServer.groups.add(tmpGroup);
     }
     public void searchGroup(String query){
-        mainServer.groups
+        int numOfGroups = mainServer.groups.size();
+        ArrayList<LineGroup> searchResult = new ArrayList<LineGroup> ();
+        for(int i=0;i<numOfGroups;i++){
+            if(mainServer.groups.get(i).groupName.equals(query)){
+                searchResult.add(groups.get(i));
+            }
+        }
+        if(searchResult.isEmpty()){
+            System.out.println("NO RESULT FOUND");
+        }else{
+            for(int j=0;j<searchResult.size();j++){
+                System.out.print(searchResult.get(j).groupName);
+                System.out.print("     ");
+                System.out.println(searchResult.get(j).groupId);
+            }
+        }
     }
     
 }
