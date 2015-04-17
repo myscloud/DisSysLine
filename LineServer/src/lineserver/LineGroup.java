@@ -5,19 +5,20 @@
  */
 package lineserver;
 
-import java.sql.Timestamp;
+//import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Map;
 
 /**
- *
+ * UUID <------------------------------- unique id
  * @author myscloud
  */
 public class LineGroup {
     public String groupName;
     public int groupId;
     public ArrayList<User> users;
-    public ArrayList<User> lastMessage;
+    public Map<User,Message> lastMessage;
     public ArrayList<Message> messages;
 
     public LineGroup(String groupName){
@@ -38,6 +39,13 @@ public class LineGroup {
         }else{
             System.out.println("THE USER DOESN'T EXIT");
         }
+    }
+    public void AUTOgetMessage(User usr){
+        
+    }
+    public void LOGINgetMessage(){
+        //send message since lastMessage[usr]
+
     }
     
 }

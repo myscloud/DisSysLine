@@ -73,5 +73,9 @@ public class User {
             }
         }
     }
+    public void exitGroup(){
+        /////
+    }
+    
     
 }
