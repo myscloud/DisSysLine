@@ -11,17 +11,8 @@ import java.util.ArrayList;
  *
  * @author myscloud
  */
-public class LineServer {
-
-    /**
-     * @param args the command line arguments
-     */
-    
+public class LineGroup {
     public ArrayList<User> users;
-    public ArrayList<LineGroup> groups;
-    
-    public static void main(String[] args) {
-        // TODO code application logic here
-    }
-    
+    public ArrayList<User> lastMessage;
+    public ArrayList<Message> messages;
 }
