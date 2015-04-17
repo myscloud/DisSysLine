@@ -20,8 +20,10 @@ public class LineServer {
     public ArrayList<User> users;
     public ArrayList<LineGroup> groups;
     
+    private int portNum= 9990;
+    
     public static void main(String[] args) {
-        // TODO code application logic here
+        
     }
     
 }

@@ -12,7 +12,7 @@ import java.util.Date;
  * @author myscloud
  */
 public class Message {
-    public int messageId;
+    public String reqType;
     public int userId;
     public int groupId;
     public String message;

@@ -15,7 +15,26 @@ public class LineClient {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        
     }
     
+    public void login(){
+        
+    }
+    
+    public void getGroupList(){
+    
+    }
+    
+    public void sendMessage(){
+        
+    }
+    
+    public void searchGroup(){
+    
+    }
+    
+    public void joinGroup(){
+        
+    }
 }

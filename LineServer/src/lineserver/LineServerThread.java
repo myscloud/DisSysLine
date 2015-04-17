@@ -11,13 +11,24 @@ package lineserver;
  */
 public class LineServerThread {
     
+    public void receiveMessage(){
+        /*  (reqType)
+            login
+            createGroup
+            joinGroup
+            inviteUser
+            searchGroup
+            sendMessage
+            leaveGroup
+            exitGroup
+            getGroupList
+            getLoginMessage
+        */
+    }
+    
     
     public void addGroup(){
         
-    }
-    
-    public void receiveMessage(){
-    
     }
     
     public void leaveGroup(){
