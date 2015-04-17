@@ -20,10 +20,11 @@ public class LineGroup {
     public ArrayList<User> users;
     public Map<User,Message> lastMessage;
     public ArrayList<Message> messages;
+    LineServer mainServer ;
 
     public LineGroup(String groupName){
         LocalDateTime timeNow= LocalDateTime.now();
-        this.groupId= timeNow.getNano()*timeNow.getHour();
+        this.groupId= mainServer.groups.size()+1;
         this.groupName=groupName;
     }
     public void addUser(User usr){

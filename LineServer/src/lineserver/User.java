@@ -18,7 +18,11 @@ public class User {
     public int userId;
     LineServer mainServer;
     
-    
+    public User(){
+    userId = mainServer.users.size()+1;
+    mainServer.users.add(this);
+    groups = new ArrayList<LineGroup> ();
+    }
     public void sendMessage(String message,int groupId){
         Message msg = new Message();
         msg.message=message;
@@ -33,22 +37,24 @@ public class User {
             System.out.println("YOU ARE NOT IN THIS GROUP");
         }
     }
-    public void joinGroup(LineGroup grp){
+    public void joinGroup(int groupId){
+        /////fix below
+        LineGroup grp = mainServer.groups.get(groupId);
         if(groups.contains(grp)){
             System.out.println("ALREADY JOINED");
         }else{
             groups.add(grp);
         }
     }
-    public void inviteUser(LineGroup grp, User usr){
+    public void inviteUser(int userId,int groupId){
+        LineGroup grp = mainServer.groups.get(groupId);
+        User usr = mainServer.users.get(userId);
         if(grp.users.contains(this)){
             if(grp.users.contains(usr)){
                 System.out.println("THIS USER ALREADY JOINED");
             }else{
                 grp.users.add(usr);
             }
-        }else{
-            System.out.println("YOU HAVE NO RIGHT");
         }
     }
     public void createGroup(String groupName){

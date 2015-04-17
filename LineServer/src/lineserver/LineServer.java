@@ -20,10 +20,15 @@ public class LineServer {
     public ArrayList<User> users;
     public ArrayList<LineGroup> groups;
     
-    private int portNum= 9990;
     
     public static void main(String[] args) {
-        
+        // TODO code application logic here
+    }
+    
+    public void login(String username){
+        //check if username exists in system
+        //if not exists, create a user in server
+        //return getGroupList
     }
     
 }
