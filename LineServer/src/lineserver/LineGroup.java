@@ -49,4 +49,33 @@ public class LineGroup {
 
     }
     
+    //************************new functions start here************************
+    ArrayList<ClientInfo> clients;
+    ArrayList<Integer> lastMessageRead;
+    ArrayList<Message> messageQueue;
+    
+    public void inviteUser(ClientInfo client){
+        
+    }
+    
+    public void exitGroup(ClientInfo client){
+        
+    }
+    
+    public void getLoginMessage(ClientInfo client){
+        
+    }
+    
+    public void joinGroup(ClientInfo client){
+        
+    }
+    
+    public void sendMessage(ClientInfo client, Message message){
+        
+    }
+    
+    public void leaveGroup(ClientInfo client){
+        
+    }
+    
 }
