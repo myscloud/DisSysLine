@@ -5,6 +5,7 @@
  */
 package lineserver;
 
+import java.net.Socket;
 import java.util.ArrayList;
 
 /**
@@ -14,6 +15,7 @@ import java.util.ArrayList;
 public class ClientInfo {
     int id;
     String username;
+    public Socket socket;
     ArrayList<LineGroup> groups;
     
     public void getGroupList(){

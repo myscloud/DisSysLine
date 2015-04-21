@@ -11,16 +11,13 @@ import java.util.ArrayList;
  *
  * @author myscloud
  */
-public class ServerManage extends Thread {
+public class ServerManager extends Thread {
     
     ArrayList<LineGroup> groups;
     ArrayList<ClientInfo> clients;
     
+    @Override
     public void run(){
-        
-    }
-    
-    public void readRemoteMessage(){
         
     }
     
@@ -39,4 +36,5 @@ public class ServerManage extends Thread {
     public void logIn(String username){
         
     }
+    
 }

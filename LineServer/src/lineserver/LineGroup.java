@@ -18,7 +18,7 @@ public class LineGroup {
     public String groupName;
     public int groupId;
     public ArrayList<User> users;
-    public Map<User,Message> lastMessage;
+    
     public ArrayList<Message> messages;
     LineServer mainServer ;
 
@@ -51,7 +51,7 @@ public class LineGroup {
     
     //************************new functions start here************************
     ArrayList<ClientInfo> clients;
-    ArrayList<Integer> lastMessageRead;
+    public Map<Integer, Integer> lastMessage;
     ArrayList<Message> messageQueue;
     
     public void inviteUser(ClientInfo client){
