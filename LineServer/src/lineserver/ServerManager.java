@@ -22,7 +22,14 @@ public class ServerManager extends Thread {
     }
     
     public void searchGroup(String searchQuery){
-        
+        ArrayList AnsGroupID = new ArrayList();
+        ArrayList<String> AnsGroupName = new ArrayList<String> ();
+        for(int i=0;i<groups.size();i++){
+            if(searchQuery.equals(groups.get(i).groupName)){
+                AnsGroupID.add(groups.get(i).groupId);
+                AnsGroupName.add(groups.get(i).groupName);
+            }
+        }
     }
     
     public void addGroup(String groupName, ClientInfo[] clients){

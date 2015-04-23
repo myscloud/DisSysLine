@@ -51,23 +51,35 @@ public class LineGroup {
     
     //************************new functions start here************************
     ArrayList<ClientInfo> clients;
-    public Map<Integer, Integer> lastMessage;
+    public Map<Integer, Integer> lastMessage; ///<clientID,messageID>
     ArrayList<Message> messageQueue;
     
     public void inviteUser(ClientInfo client){
-        
+        ///same with joinGroup
     }
     
     public void exitGroup(ClientInfo client){
-        
+        //maii yoo laew, diaw come back
+        lastMessage.put(client.id,messageQueue.size());
     }
     
     public void getLoginMessage(ClientInfo client){
-        
+        ///คืน arraylist ของ msg dee ma?
+        ArrayList<Message> returnMSG = new ArrayList<Message> ();
+        int startMSG_ID = this.lastMessage.get(client.id);
+        int count=startMSG_ID;
+        while(count!=messages.size()){
+            returnMSG.add(this.messages.get(count));
+            count++;
+        }
     }
     
     public void joinGroup(ClientInfo client){
-        
+        if(client.MyGroups.contains(this)){
+            System.out.print("ALREADY IN");
+        }else{
+            client.MyGroups.add(this);
+        }
     }
     
     public void sendMessage(ClientInfo client, Message message){
