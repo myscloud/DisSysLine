@@ -1,3 +1,8 @@
 /LineServer/nbproject/private/
 /LineClient/nbproject/private/
+<<<<<<< HEAD
 /LineClient/build/
+=======
+/TestRMI/nbproject/private/
+/RMIServer/nbproject/private/
+>>>>>>> origin/master
