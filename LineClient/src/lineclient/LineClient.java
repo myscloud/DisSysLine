@@ -16,6 +16,7 @@ public class LineClient {
      */
     public static void main(String[] args) {
         
+        Login l = new Login();
     }
     
     public void login(){
