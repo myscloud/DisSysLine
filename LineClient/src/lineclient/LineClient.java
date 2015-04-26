@@ -5,37 +5,47 @@
  */
 package lineclient;
 
+import java.io.IOException;
+import java.net.ServerSocket;
+import java.net.Socket;
+import javax.swing.JFrame;
+
 /**
  *
  * @author Earth_MacBook
  */
-public class LineClient {
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
+public class LineClient{
+    
+    public static final String SERVER_HOSTNAME = "localhost";
+    public static final int SERVER_PORT = 9999;
+
+    public static void main(String args[]){
         
-        Login l = new Login();
-    }
-    
-    public void login(){
+        Sender sender = null;
+        Receiver receiver = null;
         
-    }
-    
-    public void getGroupList(){
-    
-    }
-    
-    public void sendMessage(){
-        
-    }
-    
-    public void searchGroup(){
-    
-    }
-    
-    public void joinGroup(){
-        
-    }
+        try {           
+           Socket socket = new Socket(SERVER_HOSTNAME, SERVER_PORT);
+           System.out.println("Connected to server " +
+              SERVER_HOSTNAME + ":" + SERVER_PORT);
+           
+           sender = new Sender(socket);
+           receiver = new Receiver(socket);
+           
+           //GUI
+           Login mainFrame = new Login(sender, receiver);
+           receiver.setMainPage(mainFrame);
+           
+           sender.start();
+           receiver.start();
+            
+        } catch (IOException ioe) {
+           System.err.println("Can not establish connection to " +
+               SERVER_HOSTNAME + ":" + SERVER_PORT);
+           ioe.printStackTrace();
+           System.exit(1);
+        }
+
+   }
 }

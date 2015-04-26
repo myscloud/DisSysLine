@@ -5,6 +5,14 @@
  */
 package lineclient;
 
+import java.awt.Color;
+import java.awt.FlowLayout;
+import java.util.ArrayList;
+import javax.swing.*;
+import static javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER;
+import static javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER;
+import javax.swing.text.DefaultCaret;
+
 /**
  *
  * @author Earth_MacBook
@@ -16,6 +24,15 @@ public class Chat extends javax.swing.JPanel {
      */
     public Chat() {
         initComponents();
+    }
+    
+    public Chat(Sender sender, Receiver receiver, Login mainPage){
+        this.sender = sender;
+        this.receiver = receiver;
+        this.mainPage = mainPage;
+        
+        initComponents();
+        this.setVisible(false);
     }
 
     /**
@@ -31,9 +48,16 @@ public class Chat extends javax.swing.JPanel {
         jTextField1 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
-        jTextField4 = new javax.swing.JTextField();
-        jButton3 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        chatTextField = new javax.swing.JTextField();
+        sendButton = new javax.swing.JButton();
+        nameLabel = new javax.swing.JLabel();
+        exitButton = new javax.swing.JButton();
+        leaveButton = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        chatPanel = new javax.swing.JPanel();
+        usernameLabel = new javax.swing.JLabel();
 
         jFrame1.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -100,54 +124,144 @@ public class Chat extends javax.swing.JPanel {
                 .addContainerGap(187, Short.MAX_VALUE))
         );
 
-        jTextField4.setFont(new java.awt.Font("TH Sarabun New", 1, 24)); // NOI18N
-        jTextField4.setForeground(new java.awt.Color(0, 204, 255));
-        jTextField4.setText("  text here");
+        chatTextField.setFont(new java.awt.Font("TH Sarabun New", 1, 24)); // NOI18N
+        chatTextField.setForeground(new java.awt.Color(0, 204, 255));
 
-        jButton3.setBackground(new java.awt.Color(102, 255, 102));
-        jButton3.setFont(new java.awt.Font("TH Sarabun New", 1, 24)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(0, 204, 255));
-        jButton3.setText("Send");
-        jButton3.setPreferredSize(new java.awt.Dimension(79, 20));
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        sendButton.setBackground(new java.awt.Color(102, 255, 102));
+        sendButton.setFont(new java.awt.Font("TH Sarabun New", 1, 24)); // NOI18N
+        sendButton.setForeground(new java.awt.Color(0, 204, 255));
+        sendButton.setText("Send");
+        sendButton.setPreferredSize(new java.awt.Dimension(79, 20));
+        sendButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                sendButtonActionPerformed(evt);
             }
         });
 
-        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel1.setFont(new java.awt.Font("TH Sarabun New", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 204, 255));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("User");
-        jLabel1.setToolTipText("");
+        nameLabel.setBackground(new java.awt.Color(255, 255, 255));
+        nameLabel.setFont(new java.awt.Font("TH Sarabun New", 1, 28)); // NOI18N
+        nameLabel.setForeground(new java.awt.Color(0, 204, 255));
+        nameLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        nameLabel.setText(groupName);
+        nameLabel.setToolTipText("");
+
+        exitButton.setBackground(new java.awt.Color(102, 255, 102));
+        exitButton.setFont(new java.awt.Font("TH Sarabun New", 1, 20)); // NOI18N
+        exitButton.setForeground(new java.awt.Color(0, 204, 255));
+        exitButton.setText("Exit");
+        exitButton.setPreferredSize(new java.awt.Dimension(79, 20));
+        exitButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exitButtonActionPerformed(evt);
+            }
+        });
+
+        leaveButton.setBackground(new java.awt.Color(102, 255, 102));
+        leaveButton.setFont(new java.awt.Font("TH Sarabun New", 1, 20)); // NOI18N
+        leaveButton.setForeground(new java.awt.Color(0, 204, 255));
+        leaveButton.setText("Leave");
+        leaveButton.setPreferredSize(new java.awt.Dimension(79, 20));
+        leaveButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                leaveButtonActionPerformed(evt);
+            }
+        });
+
+        jScrollPane1.setPreferredSize(new java.awt.Dimension(260, 260));
+
+        chatPanel.setPreferredSize(new java.awt.Dimension(255, 255));
+
+        javax.swing.GroupLayout chatPanelLayout = new javax.swing.GroupLayout(chatPanel);
+        chatPanel.setLayout(chatPanelLayout);
+        chatPanelLayout.setHorizontalGroup(
+            chatPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 955, Short.MAX_VALUE)
+        );
+        chatPanelLayout.setVerticalGroup(
+            chatPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 458, Short.MAX_VALUE)
+        );
+
+        jScrollPane1.setViewportView(chatPanel);
+
+        jScrollPane1.setHorizontalScrollBarPolicy(HORIZONTAL_SCROLLBAR_NEVER);
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        usernameLabel.setFont(new java.awt.Font("TH Sarabun New", 1, 18)); // NOI18N
+        usernameLabel.setForeground(new java.awt.Color(0, 204, 255));
+        usernameLabel.setText(mainPage.loginName);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(chatTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(sendButton, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(jLabel1)))
-                .addContainerGap(19, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(exitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(nameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(leaveButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(12, Short.MAX_VALUE))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(128, 128, 128)
+                .addComponent(usernameLabel)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 353, Short.MAX_VALUE)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(nameLabel)
+                        .addComponent(exitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(leaveButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(16, 16, 16))
+                    .addComponent(chatTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(sendButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(usernameLabel)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -159,18 +273,152 @@ public class Chat extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    private void sendButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendButtonActionPerformed
+        String message = chatTextField.getText();
+        sender.sendMessage(nameLabel.getText(), message);
+    }//GEN-LAST:event_sendButtonActionPerformed
+
+    private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
+        mainPage.chatToMain(nameLabel.getText());
+    }//GEN-LAST:event_exitButtonActionPerformed
+
+    private void leaveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_leaveButtonActionPerformed
+        mainPage.leaveGroup(nameLabel.getText());
+    }//GEN-LAST:event_leaveButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel chatPanel;
+    private javax.swing.JTextField chatTextField;
+    private javax.swing.JButton exitButton;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
     private javax.swing.JFrame jFrame1;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField4;
+    private javax.swing.JButton leaveButton;
+    private javax.swing.JLabel nameLabel;
+    private javax.swing.JButton sendButton;
+    private javax.swing.JLabel usernameLabel;
     // End of variables declaration//GEN-END:variables
+
+    public void setGroupName(String groupName){
+        nameLabel.setText(groupName);
+    }
+    
+    public void receiveMessage(ArrayList<String> params){
+        int preferredHeight = 320;
+        if(110*(params.size()/4) > 320) preferredHeight = 110*(params.size()/4);
+        chatPanel.removeAll();
+        chatPanel.setPreferredSize(new java.awt.Dimension(280, preferredHeight));
+        chatPanel.setLayout(new FlowLayout());
+        int startIdx = 1;
+        for(int i = 1; i < params.size(); i++){ //so sorry, my teacher, TwT
+            if(!params.get(i).equals("sendNewMessage")){
+                startIdx = i;
+                break;
+            }
+        }
+        for(int i = startIdx; i < params.size(); i+=4){
+            String username = params.get(i);
+            String message = params.get(i+1);
+            String timeStr = params.get(i+2);
+            String isNew = params.get(i+3);
+            
+            ChatPanel panel = new ChatPanel(username, message, timeStr, isNew);
+            chatPanel.add(panel.jPanel4);
+        }
+    }
+    
+    public void setUsernameLabel(String username){
+        usernameLabel.setText("ID:  " + username);
+    }
+    
+    class ChatPanel{
+        
+        JPanel jPanel4;
+        JTextArea jTextArea1;
+        JScrollPane jScrollPane2;
+        JLabel jLabel1;
+        JLabel jLabel2;
+        
+        public ChatPanel(String username, String message, String timeStr, String isNew){
+            jPanel4 = new JPanel();
+            jPanel4.setPreferredSize(new java.awt.Dimension(230, 100));
+            jTextArea1 = new JTextArea();
+            jScrollPane2 = new JScrollPane();
+            jLabel1 = new JLabel();
+            jLabel2 = new JLabel();
+            
+        Color readMsg = new Color(204, 204, 255);
+        Color unreadMsg = new Color(153,255,102);
+        
+        if(isNew.equals("0")){
+            jPanel4.setBackground(readMsg);
+            jPanel4.setForeground(readMsg);
+            jTextArea1.setBackground(readMsg);
+        }
+        else{
+            jPanel4.setBackground(unreadMsg);
+            jPanel4.setForeground(unreadMsg);
+            jTextArea1.setBackground(unreadMsg);
+        }
+
+        
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane2.setViewportView(jTextArea1);
+        jScrollPane2.setHorizontalScrollBarPolicy(HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPane2.setVerticalScrollBarPolicy(VERTICAL_SCROLLBAR_NEVER);
+        jTextArea1.setEditable(false);
+        jTextArea1.setText(message);
+        jScrollPane2.setOpaque(false);
+        jScrollPane2.setBorder(javax.swing.BorderFactory.createEmptyBorder());
+
+        jLabel1.setFont(new java.awt.Font("TH Sarabun New", 1, 16)); // NOI18N
+        jLabel1.setText(username);
+
+        jLabel2.setFont(new java.awt.Font("TH Sarabun New", 0, 14)); // NOI18N
+        jLabel2.setText(timeStr);
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel2))
+        );
+        }
+    }
+    
+    private Sender sender;
+    private Receiver receiver;
+    private Login mainPage;
+    private String groupName;
 }

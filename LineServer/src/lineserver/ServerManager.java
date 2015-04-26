@@ -14,7 +14,12 @@ import java.util.ArrayList;
 public class ServerManager extends Thread {
     
     ArrayList<LineGroup> groups;
-    ArrayList<ClientInfo> clients;
+    ArrayList<LineUser> clients;
+    
+    public ServerManager(){
+        groups = new ArrayList<LineGroup>();
+        clients = new ArrayList<LineUser>();
+    }
     
     @Override
     public void run(){
@@ -32,16 +37,58 @@ public class ServerManager extends Thread {
         }
     }
     
-    public void addGroup(String groupName, ClientInfo[] clients){
-        
+    public LineGroup addGroup(String groupName){
+        LineGroup group = new LineGroup(groups.size(), groupName);
+        groups.add(group);
+        System.out.println("add "+groups.get(0).groupName);
+        return group;
     }
     
-    public void addUser(String username){
+    public LineGroup joinGroup(String groupName){
+        LineGroup group = null;
+        System.out.println("debug " + groupName);
+        for(int i = 0; i < groups.size(); i++){
+            if(groups.get(i).groupName.equals(groupName)){
+                group = groups.get(i);
+                break;
+            }
+        }
+        if(group == null)
+            group = addGroup(groupName);
         
+        System.out.println("------user-------");
+        for(int i = 0; i < groups.size(); i++)
+            System.out.println(groups.get(i).groupName);
+        System.out.println("------user-------");
+        return group;
     }
     
-    public void logIn(String username){
-        
+    public LineUser addUser(String username){
+        LineUser user = new LineUser(clients.size(), username);
+        clients.add(user);
+        return user;
     }
     
+    public LineUser logIn(String username){
+        LineUser user = null;
+        for(int i = 0; i < clients.size(); i++){
+            if(clients.get(i).username.equals(username)){
+                user = clients.get(i);
+                break;
+            }
+        }
+        if(user == null)
+            user = addUser(username);
+        return user;
+    }
+    
+    public LineGroup findGroup(String groupName){
+        LineGroup group = null;
+        for(int i = 0; i < groups.size(); i++){
+            if(groups.get(i).groupName.equals(groupName)){
+                group = groups.get(i);
+            }
+        }
+        return group;
+    }
 }

@@ -12,9 +12,13 @@ import java.util.Date;
  * @author myscloud
  */
 public class Message {
-    public int userId;
-    public int groupId;
-    public String message;
-    LocalDateTime time;
+    LineUser user;
+    String message;
+    String time;
     
+    public Message(LineUser user, String message, String time){
+        this.user = user;
+        this.message = message;
+        this.time = time;
+    }
 }

@@ -7,8 +7,8 @@ package lineserver;
 
 /**
  *
- * @author janinkuwijitsuwan
+ * @author myscloud
  */
-public class RequestMessage {
+public class Arraylist {
     
 }

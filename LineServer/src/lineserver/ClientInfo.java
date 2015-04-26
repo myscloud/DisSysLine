@@ -13,24 +13,25 @@ import java.util.ArrayList;
  * @author myscloud
  */
 public class ClientInfo {
-    int id; //userID
-    String username;
+    LineUser user;
     public Socket socket;
     ArrayList<LineGroup> MyGroups;
     
-    public void getGroupList(){
-        for(int i=0;i<MyGroups.size();i++){
-            int msgID = MyGroups.get(i).lastMessage.get(id);
-            int numOfunread = MyGroups.get(i).lastMessage.size()-msgID;
-            System.out.println(MyGroups.get(i).groupName+" :  "+numOfunread+" message(s) unread.");
-        }
+    ClientListener listener;
+    ClientSender sender;
+    
+    public ClientInfo(){
+        
     }
     
-    public void joinGroup(LineGroup group){
-        MyGroups.add(group);
+    public void setDefault(Socket socket, ClientListener listener, ClientSender sender){
+        this.socket = socket;
+        this.listener = listener;
+        this.sender = sender;
+        user = null;
     }
-    
-    public void leaveGroup(LineGroup group){
-            MyGroups.remove(group);
+
+    public void setUser(LineUser user){
+        this.user = user;
     }
 }
