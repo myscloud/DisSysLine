@@ -239,6 +239,11 @@ public class Login extends javax.swing.JFrame {
         pack();
     }
     
+    public void logOut(){
+        mainPage.setVisible(false);
+        loginPage.setVisible(true);
+    }
+    
     public void mainToChat(String groupName){
         mainPage.setVisible(false);
         sender.enterGroup(groupName);
